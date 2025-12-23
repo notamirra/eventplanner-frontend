@@ -1,10 +1,7 @@
 import axios from 'axios';
 
 const API_BASE_URL =
-  process.env.REACT_APP_BACKEND_URL ||
-  "http://backend-amiraahmed-dev.apps.rm1.0a51.p1.openshiftapps.com";
-
-
+process.env.REACT_APP_API_URL ;
 const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
@@ -14,12 +11,15 @@ const api = axios.create({
 
 // Add user ID to requests
 api.interceptors.request.use((config) => {
-  const user = JSON.parse(localStorage.getItem('user') || '{}');
-  if (user.id) {
-    config.headers['X-User-ID'] = user.id;
+  if (config.url !== '/signup' && config.url !== '/login') {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    if (user.id) {
+      config.headers['X-User-ID'] = user.id;
+    }
   }
   return config;
 });
+
 
 // Auth API functions
 export const authAPI = {
