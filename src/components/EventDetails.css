@@ -1,0 +1,158 @@
+.event-details-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.btn-back {
+  padding: 10px 20px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.actions-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #28a745;
+  color: white;
+}
+
+.invite-form,
+.task-form {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.attendees-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.attendees-table th,
+.attendees-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.attendees-table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+}
+
+.status-badge,
+.role-badge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status-going {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status-maybe {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status-not-going {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.status-pending {
+  background-color: #e2e3e5;
+  color: #383d41;
+}
+
+.role-organizer {
+  background-color: #cce5ff;
+  color: #004085;
+}
+
+.role-attendee {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+.role-collaborator {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.no-attendees {
+  text-align: center;
+  color: #999;
+  padding: 20px;
+}
+
+.loading,
+.error-message {
+  padding: 20px;
+  text-align: center;
+}
+
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  border-radius: 4px;
+}
