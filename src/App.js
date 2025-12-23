@@ -10,13 +10,20 @@ import './App.css';
 
 function App() {
   const [user, setUser] = useState(null);
+  const [authReady, setAuthReady] = useState(false);
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
+    setAuthReady(true);
   }, []);
+
+  // ✅ THIS WAS MISSING
+  if (!authReady) {
+    return <div style={{ padding: '2rem' }}>Loading...</div>;
+  }
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -25,9 +32,7 @@ function App() {
   };
 
   const ProtectedRoute = ({ children }) => {
-    if (!user) {
-      return <Navigate to="/login" />;
-    }
+    if (!user) return <Navigate to="/login" replace />;
     return children;
   };
 
@@ -41,8 +46,12 @@ function App() {
               <Link to="/events">My Events</Link>
               <Link to="/create-event">Create Event</Link>
               <Link to="/search">Search</Link>
-              <span className="user-info">Welcome, {user.name || user.email}!</span>
-              <button onClick={handleLogout} className="logout-btn">Logout</button>
+              <span className="user-info">
+                Welcome, {user.name || user.email}!
+              </span>
+              <button onClick={handleLogout} className="logout-btn">
+                Logout
+              </button>
             </>
           ) : (
             <>
@@ -52,10 +61,12 @@ function App() {
           )}
         </div>
       </nav>
+
       <main>
         <Routes>
           <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/signup" element={<Signup setUser={setUser} />} />
+
           <Route
             path="/events"
             element={
@@ -64,6 +75,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+
           <Route
             path="/create-event"
             element={
@@ -72,6 +84,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+
           <Route
             path="/events/:id"
             element={
@@ -80,6 +93,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+
           <Route
             path="/search"
             element={
@@ -88,11 +102,10 @@ function App() {
               </ProtectedRoute>
             }
           />
+
           <Route
             path="/"
-            element={
-              user ? <Navigate to="/events" /> : <Navigate to="/login" />
-            }
+            element={user ? <Navigate to="/events" /> : <Navigate to="/login" />}
           />
         </Routes>
       </main>
