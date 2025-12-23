@@ -1,4 +1,4 @@
-# ---------- Build stage (Node) ----------
+# ---------- Build stage ----------
 FROM node:18-alpine AS build
 
 WORKDIR /app
@@ -10,13 +10,14 @@ COPY . .
 RUN npm run build
 
 
-# ---------- Runtime stage (OpenShift-safe Nginx) ----------
+# ---------- Runtime stage ----------
 FROM registry.access.redhat.com/ubi8/nginx-120
 
-# Copy React build output to nginx html directory
+# Copy React build output
 COPY --from=build /app/build /usr/share/nginx/html
 
-# Optional: custom nginx config
-# COPY nginx.conf /etc/nginx/conf.d/default.conf
+# IMPORTANT:
+# ❌ DO NOT copy nginx.conf
+# ❌ DO NOT override default config
 
 EXPOSE 8080
