@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const API_BASE_URL = process.env.REACT_APP_BACKEND_URL;
+const API_BASE_URL =
+  process.env.REACT_APP_BACKEND_URL ||
+  "http://backend-amiraahmed-dev.apps.rm1.0a51.p1.openshiftapps.com";
 
 
 const api = axios.create({
